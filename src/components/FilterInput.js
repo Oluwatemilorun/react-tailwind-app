@@ -74,18 +74,18 @@ function FilterInput(props) {
 			{!hidden.includes('yearInterval') ? (
 				<>
 					<div className="col-span-3">
-						<input type="text" className="w-full" min={1} max={31} value={startYear} onInput={(e) => setStartYear(e.target.value)} />
+						<input type="number" className="w-full" min={1995} max={today.getFullYear()} value={startYear} onInput={(e) => setStartYear(e.target.value)} />
 					</div>
 					<div className="col-span-2 self-center">
 						<div className="text-white text-center">to</div>
 					</div>
 					<div className="col-span-3">
-						<input type="text" className="w-full" min={1} max={31} value={endYear} onInput={(e) => setEndYear(e.target.value)} />
+						<input type="number" className="w-full" min={1995} max={today.getFullYear()} value={endYear} onInput={(e) => setEndYear(e.target.value)} />
 					</div>
 				</>
 			) : (
 				<div className="col-span-8">
-					<input type="text" className="w-full" min={1} max={31} value={year} onInput={(e) => setYear(e.target.value)} />
+					<input type="number" className="w-full" min={1995} max={today.getFullYear()} value={year} onInput={(e) => setYear(e.target.value)} />
 				</div>
 			)}
 			</div>
