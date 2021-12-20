@@ -41,7 +41,7 @@ function App() {
   const handleSubmit = (startDate, endDate) => {
     if (filter === 'WEEK') {
       const interval = endDate.getFullYear() - startDate.getFullYear()
-      const req = Array(interval).fill(0).map((_, index) => client.get(`/apod?api_key=${process.env.REACT_APP_API_KEY}&date=${startDate.getFullYear() - index}-${startDate.getMonth() + 1 === 13 ? 12 : startDate.getMonth() + 1}-${startDate.getDate()}`))
+      const req = Array(interval).fill(0).map((_, index) => client.get(`/apod?api_key=${process.env.REACT_APP_API_KEY}&date=${startDate.getFullYear() + index}-${startDate.getMonth() + 1 === 13 ? 12 : startDate.getMonth() + 1}-${startDate.getDate()}`))
 
       fetchImages(req)
     } else {
