@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import FilterInput from './components/FilterInput'
 import Loader from './components/Loader';
@@ -16,6 +16,11 @@ function App() {
   const [loading, setLoading] = useState(true)
   const [xhrError, setXhrError] = useState(null)
   const [images, setImages] = useState([])
+
+  useEffect(() => {
+    console.log('mounted')
+    handleSubmit(new Date(1997, 4, 9), new Date(2021, 4, 9))
+  }, [])
 
   const handleFilter = ({ target }) => {
     setFilter(target.value)
@@ -86,7 +91,7 @@ function App() {
         </div>
       </div>
       <div className="col-span-12 md:col-span-8 md:overflow-auto">
-        <div className="p-3">
+        <div className="p-3 md:h-full">
           {(loading || xhrError !== null) ? (
             <div className="col-span-12 h-full flex justify-center items-center">
               {loading && (

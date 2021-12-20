@@ -9,12 +9,12 @@ import Button from './Button'
  */
 function FilterInput(props) {
 	const hidden = props.hidden || []
-	const today = new Date()
+	const today = new Date(1997, 4, 9)
 	const [day, setDay] = useState(today.getDate())
 	const [month, setMonth] = useState(today.getMonth() + 1)
-	const [year, setYear] = useState(today.getFullYear() - 1)
-	const [startYear, setStartYear] = useState(today.getFullYear() - 1)
-	const [endYear, setEndYear] = useState(today.getFullYear())
+	const [year, setYear] = useState(2020)
+	const [startYear, setStartYear] = useState(today.getFullYear())
+	const [endYear, setEndYear] = useState(2021)
 
 	const handleClick = () => {
 		const startDate = new Date()
