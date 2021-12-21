@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react'
+import Masonry from 'masonry-layout'
+import imagesLoaded from 'imagesloaded'
 
 import FilterInput from './components/FilterInput'
 import Loader from './components/Loader';
@@ -19,6 +21,7 @@ function App() {
 
   useEffect(() => {
     console.log('mounted')
+   
     handleSubmit(new Date(1997, 4, 9), new Date(2021, 4, 9))
   }, [])
 
@@ -33,12 +36,25 @@ function App() {
 
       const res = typeof req.length !== 'undefined' ? await Promise.all(req) : await req
 
+
+      setLoading(false)
       setImages(res)
+
+      const msnry = new Masonry('.msnry-grid', {
+        itemSelector: '.msnry-grid-item',
+        columnWidth: '.msnry-grid-sizer',
+        percentPosition: true,
+      })
+  
+      const imgLoaded = imagesLoaded('.msnry-grid')
+      
+      imgLoaded.on('progress', () => {
+        msnry.layout()
+      })
     } catch (error) {
       console.log(error)
-      setXhrError(error)
-    } finally {
       setLoading(false)
+      setXhrError(error)
     }
   }
 
@@ -104,12 +120,11 @@ function App() {
               )}
             </div>
           ) : (
-            <div className='grid grid-cols-12 gap-4'>
+            <div className='msnry-grid'>
+              <div className='msnry-grid-sizer'></div>
               {images.map((image) => (
-                <div key={image.date} className='col-span-6 md:col-span-3 lg:col-span-4'>
-                  <div className='w-full h-auto rounded-lg border-4'>
-                    <img src={image.hdurl} alt={image.title} className="rounded-lg " />
-                  </div>
+                <div key={image.date} className='msnry-grid-item'>
+                  <img src={image.hdurl} alt={image.title} className="w-full h-auto rounded-lg border-4" />
                 </div>
               ))}
             </div>
