@@ -21,8 +21,8 @@ function App() {
 
   useEffect(() => {
     console.log('mounted')
-   
-    handleSubmit(new Date(1997, 4, 9), new Date(2021, 4, 9))
+
+    // handleSubmit(new Date(1997, 4, 9), new Date(2021, 4, 9))
   }, [])
 
   const handleFilter = ({ target }) => {
@@ -45,9 +45,9 @@ function App() {
         columnWidth: '.msnry-grid-sizer',
         percentPosition: true,
       })
-  
+
       const imgLoaded = imagesLoaded('.msnry-grid')
-      
+
       imgLoaded.on('progress', () => {
         msnry.layout()
       })
@@ -106,7 +106,7 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="col-span-12 md:col-span-8 md:overflow-auto">
+      <div className="col-span-12 md:col-span-8 md:overflow-auto dark:bg-black">
         <div className="p-3 md:h-full">
           {(loading || xhrError !== null) ? (
             <div className="col-span-12 h-full flex justify-center items-center">
@@ -124,7 +124,11 @@ function App() {
               <div className='msnry-grid-sizer'></div>
               {images.map((image) => (
                 <div key={image.date} className='msnry-grid-item'>
-                  <img src={image.hdurl} alt={image.title} className="w-full h-auto rounded-lg border-4" />
+                  {image.media_type === 'image' ?
+                    <img src={image.hdurl} alt={image.title} className="w-full h-auto rounded-lg border-4" />
+                    :
+                    <video src={image.url} autoPlay loop className="w-full h-auto rounded-lg border-4" />
+                  }
                 </div>
               ))}
             </div>
