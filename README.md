@@ -1,6 +1,6 @@
 # React + Tailwind CSS
 
-> A simple application build with React and Tailwind CSS and utilizing the NASA Astronomy Picture of the Day API
+> A simple application built with React and Tailwind CSS and utilizing the NASA Astronomy Picture of the Day API
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
